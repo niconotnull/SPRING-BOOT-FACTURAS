@@ -2,6 +2,8 @@ package com.delivery.clientes.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -13,7 +15,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name="CLIENTE")
 public class Cliente implements Serializable {
@@ -48,7 +51,7 @@ public class Cliente implements Serializable {
     @Column(name= "urlFoto2")
     private String urlFoto2;
 
-    @JsonIgnoreProperties({"cliente", "hibernateLazyInitializer", "handler"})
+    @JsonIgnoreProperties(value={"cliente", "hibernateLazyInitializer", "handler"}, allowSetters=true)
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "cliente", cascade = CascadeType.ALL)
     private List<Factura> facturas;
 

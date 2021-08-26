@@ -2,6 +2,8 @@ package com.delivery.clientes.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,7 +13,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "FACTURA")
-@Data
+@Getter
+@Setter
 public class Factura implements Serializable {
 
     @Id
@@ -26,7 +29,7 @@ public class Factura implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date createAt;
 
-    @JsonIgnoreProperties({"factura","hibernateLazyInitializer", "handler"})
+    @JsonIgnoreProperties(value={"factura","hibernateLazyInitializer", "handler"}, allowSetters=true)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id") // si no se define, se asigna de forma automática
     private Cliente cliente;

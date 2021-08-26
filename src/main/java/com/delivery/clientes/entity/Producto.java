@@ -5,7 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity
+@Entity(name ="Producto" )
 @Table(name = "PRODUCTO")
 @Data
 public class Producto {
